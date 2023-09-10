@@ -52,7 +52,7 @@ public class PlayerInteractionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Interactable _) && _capsuleCollider.enabled == true)
+        if (other.gameObject.TryGetComponent(out Interactable _))
         {
             _objectsToInteractWith.Add(other.gameObject);
             if (!_canInteractWithSomething)

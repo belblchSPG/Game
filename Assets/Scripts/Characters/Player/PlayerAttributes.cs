@@ -152,6 +152,7 @@ namespace RPG
 
         public void AddExperience(int value)
         {
+            Debug.Log("added exp");
             _playerExperience += value;
         }
     }

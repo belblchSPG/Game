@@ -10,7 +10,6 @@ public class DamageDealer : MonoBehaviour
 
     [SerializeField] private float weaponLength;
     [SerializeField] private float weaponDamage;
-    [SerializeField] private bool _canDealDamage = false;
 
     void Start()
     {

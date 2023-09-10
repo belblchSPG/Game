@@ -20,7 +20,7 @@ public class ZombieAnimatorController : MonoBehaviour
         HandleAnimations();
     }
 
-    private void HandleAnimations()
+    public void HandleAnimations()
     {
         if(_zombieCharacter.IsDead())
         {
@@ -35,7 +35,7 @@ public class ZombieAnimatorController : MonoBehaviour
     private IEnumerator Death()
     {
         _zombieAnimator.SetTrigger("IsDeadTrigger");
-        yield return null;
+        yield return new WaitForSeconds(0);
         _zombieAnimator.ResetTrigger("IsDeadTrigger");
     }
     

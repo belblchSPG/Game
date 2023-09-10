@@ -1,15 +1,18 @@
+using RPG;
 using System.Collections;
 using UnityEngine;
 
-public class EnemyCharacter : MonoBehaviour
+public class EnemyCharacter : MonoBehaviour, IEnemy
 {
+
     [SerializeField] protected float _health;
-    [SerializeField] protected float _experience;
+    [SerializeField] protected int _experience;
     [SerializeField] protected string _name;
     [SerializeField] private bool _canTakeDamage = true;
     [SerializeField] private bool _isTakingDamage = false;
     [SerializeField] private bool _isDead = false;
-    
+
+    public int ID { get; set; }
     public void TakeDamage(float damage)
     {
         if(_canTakeDamage) 
@@ -39,6 +42,8 @@ public class EnemyCharacter : MonoBehaviour
 
     private IEnumerator Die()
     {
+        CombatEvent.EnemyDied(this);
+        GameManagerContainer.Instance.GetPlayer().GetComponent<PlayerAttributes>().AddExperience(_experience);
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
@@ -48,5 +53,20 @@ public class EnemyCharacter : MonoBehaviour
         _isTakingDamage = true;
         yield return new WaitForSeconds(1);
         _isTakingDamage = false;
+    }
+
+    void IEnemy.Die()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void TakeDamage(int amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetEnemyName()
+    {
+        return _name;
     }
 }
